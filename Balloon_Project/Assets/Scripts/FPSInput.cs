@@ -6,6 +6,7 @@ public class FPSInput : MonoBehaviour
 {
     public float speed = 2.0f;
     public float speedLeftRight = 50.0f;
+    public bool WASD = false;
     private CharacterController _charController;
     private void Start()
     {
@@ -13,11 +14,15 @@ public class FPSInput : MonoBehaviour
     }
     void Update()
     {
-        float deltaZ = Input.GetAxis("Vertical") * speed;
+	float deltaZ = 0;
         float deltaY = 0;
+        if (WASD)
+        {
+	    deltaZ = Input.GetAxis("Vertical") * speed;
+            float deltaX = Input.GetAxis("Horizontal") * speedLeftRight;
+            transform.Rotate(0, deltaX * Time.deltaTime, 0);
+	}
 
-        float deltaX = Input.GetAxis("Horizontal") * speedLeftRight;
-        transform.Rotate(0, deltaX * Time.deltaTime, 0);
 
         if (Input.GetKey(KeyCode.Space))
             deltaY += speed;
