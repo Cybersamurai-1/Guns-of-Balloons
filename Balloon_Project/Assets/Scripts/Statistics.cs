@@ -6,18 +6,27 @@ using UnityEngine.UI;
 
 public class Statistics : MonoBehaviour
 {
-    public float PlayedTime = 0.0f;
+    [HideInInspector]
+    public float T_start;
+    private float PlayedTime = 0.0f;
     private Vector3 Position;
     private Transform T;
-    public float TraveledDistance = 0.0f;
+    private float TraveledDistance = 0.0f;
 
-    public Text time;
-    public Text distance;
+    public Text DisplayText;
 
     // Start is called before the first frame update
     void Start()
     {
-        T = gameObject.GetComponent<Transform>(); Position = T.position;
+        T = gameObject.GetComponent<Transform>(); Position = T.position; T_start = Time.time;
+    }
+
+    public Dictionary<string, string> GetStatistics()
+    {
+        var d = new Dictionary<string, string>();
+        d.Add("RlayedTime", Math.Round(PlayedTime, 2).ToString());
+        d.Add("Distance traveled", Math.Round(TraveledDistance, 2).ToString());
+        return d;
     }
 
     // Update is called once per frame
@@ -26,8 +35,7 @@ public class Statistics : MonoBehaviour
         PlayedTime += Time.deltaTime;
         TraveledDistance += (T.position - Position).magnitude;
 
-        time.text = $"Played time: {Math.Round(PlayedTime,2)}";
-        distance.text = $"Distance traveled: {Math.Round(TraveledDistance, 2)}";
+        DisplayText.text = $"Played time: {Math.Round(PlayedTime, 2)}  Distance traveled: {Math.Round(TraveledDistance, 2)}";
 
         Position = T.position;
     }
