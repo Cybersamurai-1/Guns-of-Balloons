@@ -11,11 +11,11 @@ public class Start_game : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(KeyCode.E))
-	{
-            player.GetComponent<Wind>().enabled = true;
-	    player.GetComponent<FPSInput>().enabled = true;
-            Destroy(knot);
-	    Destroy(this);
-	}
+	    {
+                player.GetComponent<Wind>().enabled = true;
+	        player.GetComponent<FPSInput>().enabled = true;
+                Destroy(knot);
+	        Destroy(this);
+	    }
     }
 }
