@@ -7,29 +7,25 @@ using UnityEngine.UI;
 
 public class LoadImages : MonoBehaviour
 {
+
     private Image _loadImage;
     private float time = 5.0f;
-    public GameObject sound;
+    public GameObject soundRain;
+    public GameObject loadSound;
     // Start is called before the first frame update
     void Start()
     {
         _loadImage = GameObject.Find("ScreenImages").GetComponent<Image>();
-        var textureSet = Resources.Load<Sprite>(getImage());
+        Sprite textureSet = Resources.Load<Sprite>(getImage());
         _loadImage.sprite = textureSet;
         StartCoroutine(Wait());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(time);
         GameObject.Destroy(_loadImage);
-        sound.GetComponent<RainScript>().enabled = true;
     }
 
     private string getImage()

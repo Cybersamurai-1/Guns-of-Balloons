@@ -13,12 +13,6 @@ public class LoadPreview : MonoBehaviour
         StartCoroutine(LoadIntro());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     IEnumerator LoadIntro()
     {
         yield return new WaitForSeconds(time);
