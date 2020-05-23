@@ -11,8 +11,9 @@ public class FPSInput : MonoBehaviour
     public float MaxHeight = 200f;
     public float MinHeight = 50f;
 
-    private float speed = 2;
-    private float speedLeftRight = 50.0f;
+
+    private float speed = 0;
+    public float speedLeftRight = 50.0f;
     private CharacterController _charController;
     private void Start()
     {
@@ -21,13 +22,13 @@ public class FPSInput : MonoBehaviour
     void Update()
     {
         float currentY = player.transform.position.y;
-	float speedUp = 0;
-	if (CurrentMaxHeight - currentY >= 0)
+	    float speedUp = 0;
+	    if (CurrentMaxHeight - currentY >= 0)
             speedUp = Convert.ToSingle(Math.Sqrt(CurrentMaxHeight - currentY));
         else            
             speedUp = Convert.ToSingle(-Math.Sqrt(-CurrentMaxHeight + currentY));
 
-	float deltaZ = 0;
+	    float deltaZ = 0;
         float deltaY = speedUp;
         if (WASD)
         {
@@ -39,11 +40,12 @@ public class FPSInput : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-	    if (CurrentMaxHeight+1 <= MaxHeight)
+          
+	        if (CurrentMaxHeight+1 <= MaxHeight)
                 CurrentMaxHeight += 0.3f;
-	}
+	    }
         if (Input.GetKey(KeyCode.LeftShift))
-	{
+	    {
             if (CurrentMaxHeight-1 > MinHeight)
                 CurrentMaxHeight -= 0.3f;
         }
